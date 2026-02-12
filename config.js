@@ -2,7 +2,7 @@
 const CONFIG = {
   // Replace this with your Google Apps Script web app URL
   // Deploy your Apps Script as a web app and paste the URL here
-  API_URL: 'https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec',
+  API_URL: 'https://script.google.com/macros/s/AKfycbydyTXh6MeemR6I5ikex3e2IyMk_rW_fPsvW95g6d3RIcPG14ZLtNUm_j726k4uBnCk/exec',
   
   // App information
   APP_NAME: 'Steelwool Africa Recruitment',
