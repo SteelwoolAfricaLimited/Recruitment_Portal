@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#2a5298">
+  <title>Steelwool Africa - HR Recruitment Portal</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/svg+xml" href="icon-192.svg">
+  <link rel="apple-touch-icon" href="icon-192.svg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="loadingOverlay" class="loading-overlay">
+    <div class="spinner"></div>
+    <p>Loading...</p>
+  </div>
+
+  <div id="mainContent" class="container">
+    <div class="header">
+      <h1>Steelwool Africa</h1>
+      <p>HR Recruitment Portal - Share Vacancy Links</p>
+    </div>
+    
+    <div class="content">
+      <div class="company-info">
+        <h2>About Steelwool Africa</h2>
+        <p>We are a leading FMCG manufacturing company known for trusted brands in the homecare and floor care product segment.</p>
+        <p>Our products are distributed across Kenya and exported to various African countries.</p>
+      </div>
+      
+      <div class="warning">IMPORTANT: DO NOT MAKE PAYMENT FOR FACILITATION OF RECRUITMENT PROCESS</div>
+      
+      <div id="positionsContainer"></div>
+    </div>
+    
+    <div class="footer">
+      <p><strong>Steelwool Africa</strong> - Building Careers, Creating Opportunities</p>
+      <p style="margin-top:10px">Shortlisting will be on a rolling basis</p>
+    </div>
+  </div>
+
+  <!-- Share Modal -->
+  <div id="shareModal" class="modal">
+    <div class="modal-content">
+      <h2 style="color:#1e3c72;margin:0 0 5px;">📋 Share Vacancy</h2>
+      <p style="color:#555;margin:0 0 20px;" id="sharePositionName"></p>
+      
+      <label style="display:block;color:#333;font-weight:600;margin-bottom:8px;">Application Link:</label>
+      <div style="display:flex;gap:8px;">
+        <input type="text" id="shareLinkInput" readonly class="input-field">
+        <button onclick="copyLink()" id="copyBtn" class="btn btn-primary">📋 Copy</button>
+      </div>
+      <p style="color:#888;font-size:0.85em;margin:10px 0 20px;">Share this link with applicants. They will go directly to the application form.</p>
+      
+      <div style="display:flex;gap:10px;">
+        <button onclick="previewForm()" class="btn btn-secondary" style="flex:1;">👁 Preview Form</button>
+        <button onclick="closeModal()" class="btn" style="flex:1;">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="positions.js"></script>
+  <script src="app.js"></script>
+  <script>
+    // Register service worker
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js')
+        .then(reg => console.log('Service Worker registered'))
+        .catch(err => console.log('Service Worker registration failed'));
+    }
+  </script>
+</body>
+</html>

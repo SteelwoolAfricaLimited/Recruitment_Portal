@@ -1,0 +1,12 @@
+IMPORTANT: Replace icon files before deployment!
+
+The icon-192.svg and icon-512.svg files are SVG placeholders.
+
+For production:
+1. Create proper PNG icons (192x192 and 512x512)
+2. Name them icon-192.png and icon-512.png
+3. Replace the SVG files
+
+See CREATE_ICONS.md for detailed instructions.
+
+Quick option: Use https://favicon.io/favicon-generator/
