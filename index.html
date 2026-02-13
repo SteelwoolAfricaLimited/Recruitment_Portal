@@ -3,72 +3,223 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#2a5298">
-  <title>Steelwool Africa - HR Recruitment Portal</title>
-  <link rel="manifest" href="manifest.json">
-  <link rel="icon" type="image/svg+xml" href="icon-192.svg">
-  <link rel="apple-touch-icon" href="icon-192.svg">
-  <link rel="stylesheet" href="styles.css">
+  <title>Steelwool Africa - Recruitment Portal</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { 
+      font-family: Arial, sans-serif; 
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+      min-height: 100vh; 
+      padding: 20px; 
+    }
+    .container { 
+      max-width: 1000px; 
+      margin: 0 auto; 
+      background: white; 
+      border-radius: 15px; 
+      padding: 40px; 
+    }
+    .header { 
+      text-align: center; 
+      margin-bottom: 40px; 
+    }
+    .header h1 { 
+      color: #1e3c72; 
+      font-size: 2.5em; 
+      margin-bottom: 10px; 
+    }
+    .warning { 
+      background: #fff3cd; 
+      border: 2px solid #ffc107; 
+      padding: 15px; 
+      border-radius: 8px; 
+      margin: 20px 0; 
+      text-align: center; 
+      font-weight: bold; 
+      color: #856404; 
+    }
+    .department { 
+      margin: 30px 0; 
+    }
+    .department h2 { 
+      color: #2a5298; 
+      border-bottom: 3px solid #2a5298; 
+      padding-bottom: 10px; 
+      margin-bottom: 20px; 
+    }
+    .positions { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+      gap: 15px; 
+    }
+    .position-card { 
+      background: #f8f9fa; 
+      border: 2px solid #e0e0e0; 
+      border-radius: 10px; 
+      padding: 20px; 
+      cursor: pointer; 
+      transition: all 0.3s; 
+    }
+    .position-card:hover { 
+      border-color: #2a5298; 
+      box-shadow: 0 5px 15px rgba(42,82,152,0.2); 
+      transform: translateY(-3px); 
+    }
+    .position-card h3 { 
+      color: #1e3c72; 
+      margin-bottom: 10px; 
+    }
+    .apply-btn { 
+      background: #2a5298; 
+      color: white; 
+      padding: 8px 20px; 
+      border-radius: 5px; 
+      margin-top: 10px; 
+      display: inline-block; 
+      font-weight: bold; 
+    }
+  </style>
 </head>
 <body>
-  <div id="loadingOverlay" class="loading-overlay">
-    <div class="spinner"></div>
-    <p>Loading...</p>
-  </div>
-
-  <div id="mainContent" class="container">
+  <div class="container">
     <div class="header">
       <h1>Steelwool Africa</h1>
-      <p>HR Recruitment Portal - Share Vacancy Links</p>
+      <p>HR Recruitment Portal</p>
     </div>
     
-    <div class="content">
-      <div class="company-info">
-        <h2>About Steelwool Africa</h2>
-        <p>We are a leading FMCG manufacturing company known for trusted brands in the homecare and floor care product segment.</p>
-        <p>Our products are distributed across Kenya and exported to various African countries.</p>
+    <div class="warning">
+      IMPORTANT: DO NOT MAKE PAYMENT FOR FACILITATION OF RECRUITMENT PROCESS
+    </div>
+
+    <div class="department">
+      <h2>Accounts Department</h2>
+      <div class="positions">
+        <div class="position-card" onclick="goToForm('senior-accountant')">
+          <h3>Senior Accountant</h3>
+          <p>1 Year Renewable Contract</p>
+          <div class="apply-btn">Apply Now</div>
+        </div>
+        <div class="position-card" onclick="goToForm('financial-accountant')">
+          <h3>Financial Accountant</h3>
+          <p>Full-time</p>
+          <div class="apply-btn">Apply Now</div>
+        </div>
+        <div class="position-card" onclick="goToForm('accounts-assistant-payables')">
+          <h3>Accounts Assistant - Payables</h3>
+          <p>Full-time</p>
+          <div class="apply-btn">Apply Now</div>
+        </div>
+        <div class="position-card" onclick="goToForm('accounts-receivables')">
+          <h3>Accounts Receivables</h3>
+          <p>Full-time</p>
+          <div class="apply-btn">Apply Now</div>
+        </div>
       </div>
-      
-      <div class="warning">IMPORTANT: DO NOT MAKE PAYMENT FOR FACILITATION OF RECRUITMENT PROCESS</div>
-      
-      <div id="positionsContainer"></div>
     </div>
-    
-    <div class="footer">
-      <p><strong>Steelwool Africa</strong> - Building Careers, Creating Opportunities</p>
-      <p style="margin-top:10px">Shortlisting will be on a rolling basis</p>
+
+    <div class="department">
+      <h2>Sales Department</h2>
+      <div class="positions">
+        <div class="position-card" onclick="goToForm('modern-trade-coordinator')">
+          <h3>Modern Trade Coordinator</h3>
+          <p>Full-time</p>
+          <div class="apply-btn">Apply Now</div>
+        </div>
+        <div class="position-card" onclick="goToForm('general-trade-coordinator')">
+          <h3>General Trade Coordinator</h3>
+          <p>Full-time</p>
+          <div class="apply-btn">Apply Now</div>
+        </div>
+        <div class="position-card" onclick="goToForm('modern-trade-key-accounts')">
+          <h3>MT Key Accounts Rep</h3>
+          <p>Full-time</p>
+          <div class="apply-btn">Apply Now</div>
+        </div>
+        <div class="position-card" onclick="goToForm('territory-sales-mt-kenya')">
+          <h3>Territory Sales - Mt Kenya</h3>
+          <p>Regional</p>
+          <div class="apply-btn">Apply Now</div>
+        </div>
+        <div class="position-card" onclick="goToForm('territory-sales-eastern')">
+          <h3>Territory Sales - Eastern</h3>
+          <p>Regional</p>
+          <div class="apply-btn">Apply Now</div>
+        </div>
+        <div class="position-card" onclick="goToForm('territory-sales-nairobi')">
+          <h3>Territory Sales - Nairobi</h3>
+          <p>Regional</p>
+          <div class="apply-btn">Apply Now</div>
+        </div>
+        <div class="position-card" onclick="goToForm('modern-trade-sales-rep')">
+          <h3>Modern Trade Sales Rep</h3>
+          <p>Full-time</p>
+          <div class="apply-btn">Apply Now</div>
+        </div>
+        <div class="position-card" onclick="goToForm('junior-sales-rep')">
+          <h3>Junior Sales Rep</h3>
+          <p>Entry Level</p>
+          <div class="apply-btn">Apply Now</div>
+        </div>
+        <div class="position-card" onclick="goToForm('horeca-institutions-sales')">
+          <h3>HORECA Sales Rep</h3>
+          <p>Full-time</p>
+          <div class="apply-btn">Apply Now</div>
+        </div>
+      </div>
     </div>
+
+    <div class="department">
+      <h2>General Positions</h2>
+      <div class="positions">
+        <div class="position-card" onclick="goToForm('junior-supervisor')">
+          <h3>Junior Supervisor</h3>
+          <p>Full-time</p>
+          <div class="apply-btn">Apply Now</div>
+        </div>
+        <div class="position-card" onclick="goToForm('data-analyst')">
+          <h3>Data Analyst</h3>
+          <p>Full-time</p>
+          <div class="apply-btn">Apply Now</div>
+        </div>
+        <div class="position-card" onclick="goToForm('plant-fitter')">
+          <h3>Plant Fitter</h3>
+          <p>Technical</p>
+          <div class="apply-btn">Apply Now</div>
+        </div>
+        <div class="position-card" onclick="goToForm('receptionist-admin')">
+          <h3>Receptionist/Admin</h3>
+          <p>Full-time</p>
+          <div class="apply-btn">Apply Now</div>
+        </div>
+        <div class="position-card" onclick="goToForm('inventory-coordinator')">
+          <h3>Inventory Coordinator</h3>
+          <p>Full-time</p>
+          <div class="apply-btn">Apply Now</div>
+        </div>
+        <div class="position-card" onclick="goToForm('inventory-assistant')">
+          <h3>Inventory Assistant</h3>
+          <p>Full-time</p>
+          <div class="apply-btn">Apply Now</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="department">
+      <h2>Merchandiser</h2>
+      <div class="positions">
+        <div class="position-card" onclick="goToForm('merchandiser')">
+          <h3>Merchandiser - Modern Trade</h3>
+          <p>KES 17,000/month</p>
+          <div class="apply-btn">Apply Now</div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
-  <!-- Share Modal -->
-  <div id="shareModal" class="modal">
-    <div class="modal-content">
-      <h2 style="color:#1e3c72;margin:0 0 5px;">📋 Share Vacancy</h2>
-      <p style="color:#555;margin:0 0 20px;" id="sharePositionName"></p>
-      
-      <label style="display:block;color:#333;font-weight:600;margin-bottom:8px;">Application Link:</label>
-      <div style="display:flex;gap:8px;">
-        <input type="text" id="shareLinkInput" readonly class="input-field">
-        <button onclick="copyLink()" id="copyBtn" class="btn btn-primary">📋 Copy</button>
-      </div>
-      <p style="color:#888;font-size:0.85em;margin:10px 0 20px;">Share this link with applicants. They will go directly to the application form.</p>
-      
-      <div style="display:flex;gap:10px;">
-        <button onclick="previewForm()" class="btn btn-secondary" style="flex:1;">👁 Preview Form</button>
-        <button onclick="closeModal()" class="btn" style="flex:1;">Close</button>
-      </div>
-    </div>
-  </div>
-
-  <script src="config.js"></script>
-  <script src="positions.js"></script>
-  <script src="app.js"></script>
   <script>
-    // Register service worker
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('sw.js')
-        .then(reg => console.log('Service Worker registered'))
-        .catch(err => console.log('Service Worker registration failed'));
+    function goToForm(position) {
+      window.location.href = 'apply.html?position=' + position;
     }
   </script>
 </body>
