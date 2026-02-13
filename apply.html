@@ -161,28 +161,6 @@
   // Your existing loadFields function will run
   loadFields(position);
 });
-    var posKey = '<?= positionKey ?>';
-
-    document.addEventListener('DOMContentLoaded', function() {
-      if (posKey === 'merchandiser') {
-        document.getElementById('dobField').style.display = 'block';
-        document.getElementById('ageFieldGroup').style.display = 'block';
-        document.getElementById('certificateField').style.display = 'block';
-        document.querySelector('input[name="dateOfBirth"]').required = true;
-        document.querySelector('input[name="dateOfBirth"]').onchange = function() {
-          var bd = new Date(this.value);
-          var td = new Date();
-          var age = td.getFullYear() - bd.getFullYear();
-          var m = td.getMonth() - bd.getMonth();
-          if (m < 0 || (m === 0 && td.getDate() < bd.getDate())) age--;
-          document.getElementById('ageField').value = age;
-          if (age > 25) alert('Please note: The maximum age for this position is 25 years.');
-        };
-        document.querySelector('select[name="certificate"]').required = true;
-      }
-      loadFields(posKey);
-    });
-
     function hideField(name) {
       var el = document.querySelector('[name="' + name + '"]');
       if (el) { var p = el.closest('.form-group'); if (p) p.style.display='none'; el.removeAttribute('required'); }
@@ -2011,28 +1989,30 @@
       }
       return false;
     };
-
-    function submitToServer(data, btn, load, msg) {
-   fetch('https://script.google.com/macros/s/AKfycbydyTXh6MeemR6I5ikex3e2IyMk_rW_fPsvW95g6d3RIcPG14ZLtNUm_j726k4uBnCk/exec', {
-  method: 'POST',
-  mode: 'no-cors',
-  headers: {'Content-Type': 'application/json'},
-  body: JSON.stringify(formData)
-})
-.then(function(result) {
-  loadingDiv.style.display = 'none';
-  msgBox.className = 'message success';
-  msgBox.textContent = 'Application submitted successfully!';
-  msgBox.style.display = 'block';
-  document.getElementById('applicationForm').reset();
-})
-.catch(function(error) {
-  loadingDiv.style.display = 'none';
-  msgBox.className = 'message error';
-  msgBox.textContent = 'Error: ' + error.message;
-  msgBox.style.display = 'block';
-});
-    }
+function submitToServer(data, btn, load, msg) {
+  fetch('https://script.google.com/macros/s/AKfycbydyTXh6MeemR6I5ikex3e2IyMk_rW_fPsvW95g6d3RIcPG14ZLtNUm_j726k4uBnCk/exec', {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(data)
+  })
+  .then(function() {
+    load.classList.remove('active');
+    msg.className = 'message success';
+    msg.textContent = 'Application submitted successfully! Check your email for confirmation.';
+    msg.style.display = 'block';
+    document.getElementById('applicationForm').reset();
+    document.getElementById('fileName').textContent = '';
+    btn.disabled = false;
+  })
+  .catch(function(error) {
+    load.classList.remove('active');
+    msg.className = 'message error';
+    msg.textContent = 'Submission failed. Please try again or contact HR directly.';
+    msg.style.display = 'block';
+    btn.disabled = false;
+  });
+}
   </script>
 </body>
 </html>
