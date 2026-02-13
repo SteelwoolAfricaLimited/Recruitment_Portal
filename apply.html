@@ -1,17 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <script>
-    const params = new URLSearchParams(window.location.search);
-const posKey = params.get('position');
-document.getElementById('posName').textContent = POSITIONS[posKey].name;
-document.querySelector('[name="position"]').value = posKey;
-loadFields(posKey); // Your existing function!
-const CONFIG = {
-  API_URL: 'https://script.google.com/macros/s/AKfycbydyTXh6MeemR6I5ikex3e2IyMk_rW_fPsvW95g6d3RIcPG14ZLtNUm_j726k4uBnCk/exec'
-};
-</script>
-<script src="positions.js"></script>
   <base target="_top">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -56,14 +45,14 @@ const CONFIG = {
 <body>
   <div class="container">
     <div class="header">
-      <h1><span id="posName"></span></h1>
+      <h1 id="positionTitle">Job Application</h1>
       <p>Steelwool Africa - Job Application</p>
     </div>
     <div class="form-section">
       <div class="warning">WARNING: DO NOT MAKE PAYMENT FOR FACILITATION OF RECRUITMENT PROCESS</div>
       <div id="messageBox" class="message"></div>
      <form id="applicationForm" novalidate>
-        <input type="hidden" name="position" value="<?= positionKey ?>">
+      <input type="hidden" name="position" id="positionInput">
         <div class="form-group">
           <label>Email Address <span class="required">*</span></label>
           <input type="email" name="email" required>
@@ -155,6 +144,23 @@ const CONFIG = {
     </div>
   </div>
   <script>
+    document.addEventListener('DOMContentLoaded', function() {
+  // Get position from URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const position = urlParams.get('position');
+  
+  if (!position) {
+    alert('Invalid position link');
+    return;
+  }
+  
+  // Set position in form
+  document.getElementById('positionInput').value = position;
+  document.getElementById('positionTitle').textContent = 'Apply for ' + position.replace(/-/g, ' ');
+  
+  // Your existing loadFields function will run
+  loadFields(position);
+});
     var posKey = '<?= positionKey ?>';
 
     document.addEventListener('DOMContentLoaded', function() {
@@ -2007,32 +2013,25 @@ const CONFIG = {
     };
 
     function submitToServer(data, btn, load, msg) {
-      google.script.run
-        .withSuccessHandler(function(res) {
-          load.classList.remove('active');
-          if (res.success) {
-            msg.className = 'message success';
-            msg.textContent = res.message;
-            msg.style.display = 'block';
-            document.getElementById('applicationForm').reset();
-            document.getElementById('fileName').textContent = '';
-            window.scrollTo(0, 0);
-            setTimeout(function() { btn.disabled = false; }, 3000);
-          } else {
-            msg.className = 'message error';
-            msg.textContent = res.message;
-            msg.style.display = 'block';
-            btn.disabled = false;
-          }
-        })
-        .withFailureHandler(function(err) {
-          load.classList.remove('active');
-          msg.className = 'message error';
-          msg.textContent = 'Error: ' + err.message;
-          msg.style.display = 'block';
-          btn.disabled = false;
-        })
-        .submitApplication(data);
+   fetch('https://script.google.com/macros/s/AKfycbydyTXh6MeemR6I5ikex3e2IyMk_rW_fPsvW95g6d3RIcPG14ZLtNUm_j726k4uBnCk/exec', {
+  method: 'POST',
+  mode: 'no-cors',
+  headers: {'Content-Type': 'application/json'},
+  body: JSON.stringify(formData)
+})
+.then(function(result) {
+  loadingDiv.style.display = 'none';
+  msgBox.className = 'message success';
+  msgBox.textContent = 'Application submitted successfully!';
+  msgBox.style.display = 'block';
+  document.getElementById('applicationForm').reset();
+})
+.catch(function(error) {
+  loadingDiv.style.display = 'none';
+  msgBox.className = 'message error';
+  msgBox.textContent = 'Error: ' + error.message;
+  msgBox.style.display = 'block';
+});
     }
   </script>
 </body>
